@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>四象限改善分析看板 · 8/14 vs 8/20</title>
+<style>
+:root{
+  --bg:#eef1f6; --card:#ffffff; --ink:#1f2937; --sub:#6b7280;
+  --gold:#b8860b; --gold-bg:#fdf6e3;
+  --red:#dc2626; --red-bg:#fef2f2;
+  --green:#059669; --green-bg:#ecfdf5;
+  --orange:#d97706; --orange-bg:#fffbeb;
+  --blue:#2563eb; --blue-bg:#eff6ff;
+  --line:#e5e7eb;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:"Microsoft YaHei","PingFang SC",sans-serif;padding:24px}
+.wrap{max-width:1280px;margin:0 auto}
+h1{font-size:24px;margin-bottom:4px}
+h1 .bar{color:var(--gold)}
+.meta{color:var(--sub);font-size:13px;margin-bottom:20px}
+.meta b{color:var(--ink)}
+.grid{display:grid;gap:14px;margin-bottom:20px}
+.kpis{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--card);border-radius:12px;padding:18px 20px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.kpi .num{font-size:34px;font-weight:700;line-height:1.1}
+.kpi .lbl{font-size:13px;color:var(--sub);margin-top:4px}
+.kpi .delta{font-size:12px;margin-top:6px;display:inline-block;padding:2px 8px;border-radius:10px}
+.g .num{color:var(--green)} .g .delta{background:var(--green-bg);color:var(--green)}
+.r .num{color:var(--red)} .r .delta{background:var(--red-bg);color:var(--red)}
+.o .num{color:var(--orange)} .o .delta{background:var(--orange-bg);color:var(--orange)}
+.b .num{color:var(--blue)} .b .delta{background:var(--blue-bg);color:var(--blue)}
+h2{font-size:17px;margin:26px 0 12px;display:flex;align-items:center;gap:8px}
+h2 .tag{font-size:11px;font-weight:400;padding:2px 8px;border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+th{background:#f8fafc;padding:10px 12px;text-align:left;font-weight:600;color:var(--sub);border-bottom:2px solid var(--line);white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid #f1f5f9;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+.dept-chip{display:inline-block;padding:2px 8px;border-radius:8px;font-size:12px;font-weight:600;white-space:nowrap}
+.dz{background:#eef2ff;color:#4338ca}.dd{background:#ecfdf5;color:#047857}.dx{background:#fef3c7;color:#b45309}
+.up{color:var(--green);font-weight:700}.down{color:var(--red);font-weight:700}.flat{color:var(--sub)}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;margin:1px 2px}
+.bg-red{background:var(--red-bg);color:var(--red)}
+.bg-orange{background:var(--orange-bg);color:var(--orange)}
+.bg-green{background:var(--green-bg);color:var(--green)}
+.bg-gold{background:var(--gold-bg);color:var(--gold)}
+.sup-row td{background:#f8fafc;font-weight:600}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}.cols{grid-template-columns:1fr}}
+.note{font-size:12px;color:var(--sub);margin-top:8px;line-height:1.7}
+.warn-box{background:var(--red-bg);border-left:4px solid var(--red);border-radius:8px;padding:14px 16px;margin-bottom:14px;font-size:13px;line-height:1.8}
+footer{margin-top:28px;text-align:center;color:var(--sub);font-size:12px}
+.scroll{max-height:420px;overflow-y:auto}
+.supgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:900px){.supgrid{grid-template-columns:1fr}}
+.supcard{background:var(--card);border-radius:12px;padding:14px 16px;box-shadow:0 1px 3px rgba(0,0,0,.06);border-top:3px solid var(--gold)}
+.supcard.zero{border-top-color:var(--red)}
+.supcard .sname{font-weight:700;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+.supcard .scnt{font-size:22px;font-weight:700;color:var(--green)}
+.supcard.zero .scnt{color:var(--red)}
+.supcard .sdesc{font-size:12px;color:var(--sub);margin-top:6px;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>四象限改善分析<span class="bar"> · </span>8/14 <span class="bar">vs</span> 8/20</h1>
+  <div class="meta">对比范围：<b>昆中 / 昆东 / 昆西</b> 三事业部 71 家追踪门店 ｜ 达标线：抖音≥4.0 · 大众点评≥4.0 · 淘宝闪购≥4.5 · 美团≥95 ｜ 生成日期：2026-08-21</div>
+
+  <div class="grid kpis">
+    <div class="card kpi g"><div class="num">16</div><div class="lbl">已改善项（8/14低→8/20达标）</div><div class="delta">景洪告庄美团 +10 为最大幅度</div></div>
+    <div class="card kpi r"><div class="num">56<span style="font-size:18px">家</span></div><div class="lbl">持续落差（60 项仍未达标）</div><div class="delta">含双平台落差 8 家</div></div>
+    <div class="card kpi o"><div class="num">5</div><div class="lbl">退步预警（达标→跌破）</div><div class="delta">保山五洲美团 -7 最严重</div></div>
+    <div class="card kpi b"><div class="num">13<span style="font-size:18px">/16</span></div><div class="lbl">改善项仅 +0.1 达标</div><div class="delta">边缘门店为主，深水区未动</div></div>
+  </div>
+
+  <div class="warn-box">
+    <b style="color:var(--red)">⚠ 立即介入</b>：保山五洲餐厅 美团 <b>97→90（-7）</b>、丽江火车站前 美团 <b>99→94（-5）</b> 两项暴跌；乾景德克士 抖音 3.8→3.5 恶化中；丽江火车站前（抖音+美团）与丽江锦绣华城（抖音）本周双双跌破达标线。
+  </div>
+
+  <h2>一、事业部汇总 <span class="tag bg-green">改善 vs 落差</span></h2>
+  <table>
+    <tr><th>事业部</th><th>改善项</th><th>持续落差项</th><th>退步项</th><th>落差最多的督导区</th></tr>
+    <tr><td><span class="dept-chip dz">昆中</span></td><td class="up">7</td><td>17 家 / 19 项</td><td class="down">1</td><td>一区(唐翔翔) 10家</td></tr>
+    <tr><td><span class="dept-chip dd">昆东</span></td><td class="up">5</td><td>12 家 / 13 项</td><td class="flat">0</td><td>一区(尹助成) 6家 零改善</td></tr>
+    <tr><td><span class="dept-chip dx">昆西</span></td><td class="up">4</td><td>27 家 / 28 项</td><td class="down">4</td><td>二区(苏术富) 14家</td></tr>
+  </table>
+
+  <h2>二、改善明细（16 项）<span class="tag bg-green">8/14 低分 → 8/20 达标</span></h2>
+  <table>
+    <tr><th>事业部</th><th>督导</th><th>餐厅</th><th>平台</th><th>8/14</th><th>8/20</th><th>幅度</th></tr>
+    <tr><td><span class="dept-chip dx">昆西</span></td><td>二区(苏术富)</td><td><b>景洪告庄</b></td><td>美团</td><td>89</td><td class="up">99</td><td class="up">+10.0 🏆</td></tr>
+    <tr><td><span class="dept-chip dd">昆东</span></td><td>二区(张波蒙)</td><td><b>麻栗坡餐厅</b></td><td>淘宝闪购</td><td>4.3</td><td class="up">4.6</td><td class="up">+0.3</td></tr>
+    <tr><td><span class="dept-chip dz">昆中</span></td><td>三区(谢天兵)</td><td>百大新都会</td><td>大众点评</td><td>3.9</td><td class="up">4.1</td><td class="up">+0.2</td></tr>
+    <tr><td><span class="dept-chip dx">昆西</span></td><td>一区(桑丽霞)</td><td>丽江长水餐厅</td><td>抖音</td><td>3.8</td><td class="up">4.0</td><td class="up">+0.2</td></tr>
+    <tr><td><span class="dept-chip dz">昆中</span></td><td>一区(唐翔翔)</td><td>安宁东湖</td><td>大众点评</td><td>3.9</td><td class="up">4.0</td><td class="up">+0.1</td></tr>
+    <tr><td><span class="dept-chip dz">昆中</span></td><td>一区(唐翔翔)</td><td>新玉溪百货</td><td>大众点评</td><td>3.9</td><td class="up">4.0</td><td class="up">+0.1</td></tr>
+    <tr><td><span class="dept-chip dz">昆中</span></td><td>一区(唐翔翔)</td><td>玉溪三千城</td><td>大众点评</td><td>3.9</td><td class="up">4.0</td><td class="up">+0.1</td></tr>
+    <tr><td><span class="dept-chip dz">昆中</span></td><td>三区(谢天兵)</td><td>果林广场</td><td>抖音</td><td>3.9</td><td class="up">4.0</td><td class="up">+0.1</td></tr>
+    <tr><td><span class="dept-chip dz">昆中</span></td><td>二区(余波)</td><td>第三城丹槿园</td><td>大众点评</td><td>3.9</td><td class="up">4.0</td><td class="up">+0.1</td></tr>
+    <tr><td><span class="dept-chip dz">昆中</span></td><td>二区(余波)</td><td>双龙餐厅</td><td>抖音</td><td>3.9</td><td class="up">4.0</td><td class="up">+0.1</td></tr>
+    <tr><td><span class="dept-chip dd">昆东</span></td><td>二区(张波蒙)</td><td>巧家</td><td>抖音</td><td>3.9</td><td class="up">4.0</td><td class="up">+0.1</td></tr>
+    <tr><td><span class="dept-chip dd">昆东</span></td><td>二区(张波蒙)</td><td>盛荣餐厅</td><td>大众点评</td><td>3.9</td><td class="up">4.0</td><td class="up">+0.1</td></tr>
+    <tr><td><span class="dept-chip dd">昆东</span></td><td>三区(文祥华)</td><td>师宗通玄公园</td><td>大众点评</td><td>3.9</td><td class="up">4.0</td><td class="up">+0.1</td></tr>
+    <tr><td><span class="dept-chip dd">昆东</span></td><td>三区(文祥华)</td><td>开远金方餐厅</td><td>大众点评</td><td>3.9</td><td class="up">4.0</td><td class="up">+0.1</td></tr>
+    <tr><td><span class="dept-chip dx">昆西</span></td><td>二区(苏术富)</td><td>洱源餐厅</td><td>抖音</td><td>3.9</td><td class="up">4.0</td><td class="up">+0.1</td></tr>
+    <tr><td><span class="dept-chip dx">昆西</span></td><td>三区(杨海燕)</td><td>芒市</td><td>大众点评</td><td>3.9</td><td class="up">4.0</td><td class="up">+0.1</td></tr>
+  </table>
+  <div class="note">注：改善集中在「差 0.1」的边缘门店（16 项中 13 项仅 +0.1）；高难度落差（美团&lt;92、点评≤3.6、双平台低）基本未动。</div>
+
+  <h2>三、退步预警（5 项）<span class="tag bg-red">8/14 达标 → 8/20 跌破</span></h2>
+  <table>
+    <tr><th>事业部</th><th>督导</th><th>餐厅</th><th>平台</th><th>8/14</th><th>8/20</th><th>变化</th><th>建议</th></tr>
+    <tr><td><span class="dept-chip dx">昆西</span></td><td>三区(杨海燕)</td><td><b>保山五洲餐厅</b></td><td>美团</td><td>97</td><td class="down">90</td><td class="down">-7 ⚠</td><td><span class="badge bg-red">立即介入</span></td></tr>
+    <tr><td><span class="dept-chip dx">昆西</span></td><td>一区(桑丽霞)</td><td><b>丽江火车站前</b></td><td>美团</td><td>99</td><td class="down">94</td><td class="down">-5 ⚠</td><td><span class="badge bg-red">立即介入</span></td></tr>
+    <tr><td><span class="dept-chip dx">昆西</span></td><td>一区(桑丽霞)</td><td>丽江火车站前</td><td>抖音</td><td>4.0</td><td class="down">3.9</td><td class="down">-0.1</td><td><span class="badge bg-orange">持续观察</span></td></tr>
+    <tr><td><span class="dept-chip dx">昆西</span></td><td>二区(苏术富)</td><td>丽江锦绣华城</td><td>抖音</td><td>4.0</td><td class="down">3.9</td><td class="down">-0.1</td><td><span class="badge bg-orange">持续观察</span></td></tr>
+    <tr><td><span class="dept-chip dz">昆中</span></td><td>一区(唐翔翔)</td><td>通海餐厅</td><td>淘宝闪购</td><td>4.5</td><td class="down">4.4</td><td class="down">-0.1</td><td><span class="badge bg-orange">持续观察</span></td></tr>
+  </table>
+
+  <h2>四、持续落差分类（56 家 / 60 项）</h2>
+  <div class="cols">
+    <div>
+      <div class="card" style="margin-bottom:14px">
+        <div style="font-weight:700;color:var(--red);margin-bottom:10px">🔴 多平台双落差（8 家）</div>
+        <table style="box-shadow:none">
+          <tr><th>餐厅</th><th>督导</th><th>落差项</th></tr>
+          <tr><td>甜橙餐厅</td><td>昆东一(尹)</td><td>抖音 3.9 · 淘宝 4.3</td></tr>
+          <tr><td>丽江白沙古镇</td><td>昆西一(桑)</td><td>抖音 3.6 · 点评 3.5</td></tr>
+          <tr><td>新大理古城</td><td>昆西二(苏)</td><td>抖音 3.8→3.6↓ · 点评 3.9</td></tr>
+          <tr><td>景洪港赛餐厅</td><td>昆西二(苏)</td><td>抖音 3.8 · 点评 3.8</td></tr>
+        </table>
+        <div class="note">另有 4 家含美团+点评双低（保山吾悦/保山餐厅/勐腊/昌宁，见美团钉子户）</div>
+      </div>
+      <div class="card">
+        <div style="font-weight:700;color:var(--orange);margin-bottom:10px">🔴 美团低分钉子户（&lt;95，10 家）</div>
+        <table style="box-shadow:none">
+          <tr><th>餐厅</th><th>督导</th><th>8/14</th><th>8/20</th><th>状态</th></tr>
+          <tr><td><b>版纳傣族园</b></td><td>昆西二(苏)</td><td>79</td><td class="down">79</td><td><span class="badge bg-red">全场最低·纹丝不动</span></td></tr>
+          <tr><td>南宁五象绿地</td><td>昆东一(尹)</td><td>90</td><td class="down">90</td><td><span class="badge bg-orange">持平</span></td></tr>
+          <tr><td>保山吾悦广场</td><td>昆西三(杨)</td><td>90</td><td class="down">90</td><td><span class="badge bg-orange">持平</span></td></tr>
+          <tr><td>保山餐厅</td><td>昆西三(杨)</td><td>91</td><td class="down">91</td><td><span class="badge bg-orange">持平</span></td></tr>
+          <tr><td>昌宁</td><td>昆西三(杨)</td><td>91</td><td class="down">91</td><td><span class="badge bg-orange">持平</span></td></tr>
+          <tr><td>勐腊餐厅</td><td>昆西二(苏)</td><td>92</td><td class="down">92</td><td><span class="badge bg-orange">持平</span></td></tr>
+          <tr><td>南宁机场精选</td><td>昆东一(尹)</td><td>94</td><td class="down">94</td><td><span class="badge bg-orange">持平</span></td></tr>
+          <tr><td>保山五洲餐厅</td><td>昆西三(杨)</td><td>97</td><td class="down">90</td><td><span class="badge bg-red">暴跌 -7</span></td></tr>
+          <tr><td>丽江火车站前</td><td>昆西一(桑)</td><td>99</td><td class="down">94</td><td><span class="badge bg-red">暴跌 -5</span></td></tr>
+          <tr><td>乾景德克士</td><td>昆中一(唐)</td><td colspan="2">—</td><td><span class="badge bg-gold">抖音 3.8→3.5 恶化</span></td></tr>
+        </table>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:14px">
+        <div style="font-weight:700;color:var(--gold);margin-bottom:10px">🟡 点评长期低位（≤3.8）</div>
+        <table style="box-shadow:none">
+          <tr><th>督导区</th><th>餐厅（8/14→8/20）</th></tr>
+          <tr class="sup-row"><td colspan="2">昆西一区(桑丽霞) — 点评整体最弱</td></tr>
+          <tr><td></td><td>丽江火车站前 3.5→3.6 · 丽江白沙古镇 3.5 · 大理机场 3.6 · 丽江锦泰餐厅 3.9 · 丽江长水 3.8 · 金桥花巷 3.9→3.8 · 香格里拉金桥 3.9→3.8 · 丽江锦泰中心 3.9→3.8 · 丽江机场 3.9 · 永胜 3.9→3.8</td></tr>
+          <tr class="sup-row"><td colspan="2">昆西二区(苏术富)</td></tr>
+          <tr><td></td><td>新双廊 3.6 · 纳思城市春天 3.7 · 景洪餐厅 3.7 · 大理火车站前 3.7 · 大理金港 3.9 · 新大理古城 3.9 · 版纳森林公园 3.9 · 丽江锦绣华城 3.8 · 景洪告庄 3.8 · 景洪高铁站 3.7→3.8↑</td></tr>
+          <tr class="sup-row"><td colspan="2">昆中二区(余波)</td></tr>
+          <tr><td></td><td>昆明南德克士 3.8→3.7 · 昆明站餐厅 3.9→3.8 · 中通世纪 3.9 · 云上小镇店 3.9 · 置信银河 3.9 · 盛高大城(抖音) 3.7→3.6↓</td></tr>
+          <tr class="sup-row"><td colspan="2">昆东</td></tr>
+          <tr><td></td><td>曲靖农嘉超 3.7 · 玉林市玉德 3.8 · 福成机场餐厅 3.8 · 南宁机场 3.9 · 建水临安古城 3.9 · 捞渔河湿地(昆中三) 3.9 · 万科桂语东方(昆中三) 3.8</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <div style="font-weight:700;color:var(--green);margin-bottom:10px">🟢 接近达标（差 0.1，可短期冲刺）</div>
+        <table style="box-shadow:none">
+          <tr><th>餐厅</th><th>平台</th><th>当前</th><th>督导</th></tr>
+          <tr><td>新亚洲体育城</td><td>抖音</td><td>3.9 ↑</td><td>昆中一(唐)</td></tr>
+          <tr><td>丘北椒莲广场</td><td>抖音</td><td>3.9 ↑</td><td>昆东二(张)</td></tr>
+          <tr><td>丽江火车站前</td><td>点评</td><td>3.6 ↑</td><td>昆西一(桑)</td></tr>
+          <tr><td>景洪高铁站</td><td>点评</td><td>3.8 ↑</td><td>昆西二(苏)</td></tr>
+          <tr><td>南亚风情园</td><td>抖音</td><td>3.9</td><td>昆中三(谢)</td></tr>
+          <tr><td>楚雄鑫茂餐厅</td><td>抖音</td><td>3.9</td><td>昆中一(唐)</td></tr>
+        </table>
+        <div class="note">这批是下周最可能转化为「已改善」的存量，建议督导优先盯。</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>五、督导画像（9 个督导区）</h2>
+  <div class="supgrid">
+    <div class="card supcard"><div class="sname">唐翔翔 · 昆中一区<span class="scnt">+3</span></div><div class="sdesc">改善最多但存量也大（10 家落差），抖音是短板；通海淘宝新跌破、乾景德克士抖音恶化至 3.5 需重点盯</div></div>
+    <div class="card supcard"><div class="sname">谢天兵 · 昆中三区<span class="scnt">+2</span></div><div class="sdesc">存量小、改善率最高，节奏健康</div></div>
+    <div class="card supcard"><div class="sname">余波 · 昆中二区<span class="scnt">+2</span></div><div class="sdesc">点评集中低分（6 家），叠加班组卡日商问题</div></div>
+    <div class="card supcard zero"><div class="sname">尹助成 · 昆东一区<span class="scnt">0</span></div><div class="sdesc">⚠ 零改善：6 家持续落差，含 2 家美团低分（90/94），需重点督办</div></div>
+    <div class="card supcard"><div class="sname">张波蒙 · 昆东二区<span class="scnt">+3</span></div><div class="sdesc">麻栗坡淘宝 +0.3 是本周改善标杆</div></div>
+    <div class="card supcard"><div class="sname">文祥华 · 昆东三区<span class="scnt">+2</span></div><div class="sdesc">存量小，稳定推进</div></div>
+    <div class="card supcard zero"><div class="sname">桑丽霞 · 昆西一区<span class="scnt">+1</span></div><div class="sdesc">⚠ 落差最重督导区（10 家）：点评全线低位 + 本周退步 2 项（火车站前抖音/美团）</div></div>
+    <div class="card supcard"><div class="sname">苏术富 · 昆西二区<span class="scnt">+2</span></div><div class="sdesc">景洪告庄美团 +10 全场标杆；但区内落差家数最多（14 家），版纳傣族园 79 全场最低</div></div>
+    <div class="card supcard"><div class="sname">杨海燕 · 昆西三区<span class="scnt">+1</span></div><div class="sdesc">美团三连低（90/91/91）+ 保山五洲暴跌 -7，美团是该区系统性短板</div></div>
+  </div>
+
+  <div class="warn-box" style="margin-top:20px;background:var(--gold-bg);border-left-color:var(--gold)">
+    <b style="color:var(--gold)">📌 结论</b>：本周改善以「边缘门店 +0.1 达标」为主（13/16 项），<b>深水区未动</b>——美团&lt;92 钉子户（版纳傣族园 79 等 7 家）与点评≤3.6 硬骨头基本原地踏步；保山五洲、丽江火车站前美团暴跌是比「持续落差」更紧急的信号，建议按「先止血（退步）→ 再冲刺（差0.1）→ 后攻坚（钉子户）」排序推进。
+  </div>
+
+  <footer>数据来源：四象限&卡日商 8.14 改善追踪表 vs 8/20 四平台实际评分 ｜ 云贵四平台看板 · 2026-08-21 生成</footer>
+</div>
+</body>
+</html>
